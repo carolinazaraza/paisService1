@@ -19,17 +19,17 @@ public class PaisServiceImpl implements IPaisService{
 
     @Override
     public Pais save(Pais pais) {
-        return null;
+        return paisDao.save(pais);
     }
 
     @Override
     public void delete(Pais pais) {
-
+        paisDao.delete(pais);
     }
 
     @Override
     public Pais update(Pais pais) {
-        return null;
+        return paisDao.save(pais);
     }
 
     /**
