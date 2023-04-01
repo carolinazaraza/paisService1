@@ -32,6 +32,7 @@ jobs:
         with:
           java-version: 17.x
           distribution: adopt
+          cache: maven
 
       - name: Hacer build con Maven
         run: mvn --batch-mode --update-snapshots clean package
