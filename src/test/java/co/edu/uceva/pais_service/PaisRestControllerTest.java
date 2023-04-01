@@ -21,6 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * Pruebas unitarias (unit tests) para la  API RESTful que se encarga de realizar operaciones CRUD sobre una entidad
+ * llamada "Pais".
+ * Se importan las clases necesarias para realizar las pruebas (MockMvc, ObjectMapper, etc.), se inyecta el servicio
+ * que se encarga de realizar las operaciones sobre la entidad "Pais" (IPaisService), y se definen varios métodos de
+ * prueba para la API RESTful, que comprueban el correcto funcionamiento de los métodos:
+ * GET, POST, PUT y DELETE de la API.
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PaisRestControllerTest {
@@ -33,13 +41,19 @@ public class PaisRestControllerTest {
     @Autowired
     private IPaisService paisService;
 
+    /**
+     * Inicializa los objetos necesarios para la prueba. En el ejemplo de código dado, este método se utiliza para \
+     * inicializar el objeto MockMvc, que se utiliza para simular el envío de solicitudes HTTP en la prueba de la  \
+     * clase PaisRestController.
+     */
     @Before
     public void setUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
     /**
-     * Prueba del hola mundo
+     * Prueba del método GET "/pais-service/hola/{nombre}", que comprueba que se recibe el nombre correcto
+     * en la respuesta.
      * @throws Exception
      */
     @Test
@@ -51,7 +65,7 @@ public class PaisRestControllerTest {
     }
 
     /**
-     * Prueba de listar paises
+     * Prueba del método GET "/pais-service/paises", que comprueba que se recibe una lista de países en la respuesta.
      * @throws Exception
      */
     @Test
@@ -75,7 +89,7 @@ public class PaisRestControllerTest {
     }
 
     /**
-     * Prueba de buscar un pais por su id
+     * Prueba del método GET "/pais-service/paises/{id}", que comprueba que se recibe el país correcto en la respuesta.
      * @throws Exception
      */
     @Test
@@ -90,6 +104,10 @@ public class PaisRestControllerTest {
         paisService.delete(pais);
     }
 
+    /**
+     * Prueba del método POST "/pais-service/paises", que comprueba que se crea un nuevo país correctamente.
+     * @throws Exception
+     */
     @Test
     public void testCrearPais() throws Exception {
         Pais pais = new Pais(null, "España");
@@ -103,6 +121,10 @@ public class PaisRestControllerTest {
         paisService.delete(pais);
     }
 
+    /**
+     * Prueba del método PUT "/pais-service/paises", que comprueba que se actualiza un país correctamente.
+     * @throws Exception
+     */
     @Test
     public void testActualizarPais() throws Exception {
         Pais pais = new Pais(null, "España");
@@ -119,6 +141,10 @@ public class PaisRestControllerTest {
         paisService.delete(pais);
     }
 
+    /**
+     * Prueba del método DELETE "/pais-service/paises/{id}", que comprueba que se elimina un país correctamente.
+     * @throws Exception
+     */
     @Test
     public void testBorrarPais() throws Exception {
         Pais pais = new Pais(null, "España");
