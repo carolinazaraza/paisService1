@@ -6,11 +6,8 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  IMAGE_NAME: my-dockerhub-username/my-image-name
-
 jobs:
-  build-y-push:
+  unit-test:
     runs-on: ubuntu-latest
 
     services:
@@ -46,3 +43,10 @@ jobs:
 
       - name: Generar el reporte Surefire
         run: mvn surefire-report:report
+
+      - name: Copia el reporte HTML de Surefire al repositorio
+        uses: actions/upload-artifact@v2
+        with:
+          name: Reporte Surefire HTML
+          path: target/site/surefire-report.html
+          
