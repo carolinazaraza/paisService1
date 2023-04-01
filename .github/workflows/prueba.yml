@@ -44,9 +44,15 @@ jobs:
       - name: Generar el reporte Surefire
         run: mvn surefire-report:report
 
+      - name: Copia el reporte Surefire HTML al repositorio
+        run: |
+          mkdir -p reports
+          cp -r target/surefire-reports/* reports/
+        if: always()
+
       - name: Copia el reporte HTML de Surefire al repositorio
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Reporte Surefire HTML
           path: target/site/surefire-report.html
-          
+
