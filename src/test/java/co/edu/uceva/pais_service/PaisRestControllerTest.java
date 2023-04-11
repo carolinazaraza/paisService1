@@ -147,7 +147,7 @@ public class PaisRestControllerTest {
      */
     @Test
     public void testBorrarPais() throws Exception {
-        Pais pais = new Pais(null, "España");
+        Pais pais = new Pais(null, "Canada");
         paisService.save(pais);
 
         this.mockMvc.perform(delete("/pais-service/paises/{id}", pais.getId()))
