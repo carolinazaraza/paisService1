@@ -70,8 +70,10 @@ public class PaisRestControllerTest {
      */
     @Test
     public void testListar() throws Exception {
-        Pais pais1 = new Pais(null, "Croacia");
-        Pais pais2 = new Pais(null, "España");
+        Pais pais1 = new Pais();
+        pais1.setNombre("croacia");
+        Pais pais2 = new Pais();
+        pais2.setNombre("España");
         paisService.save(pais1);
         paisService.save(pais2);
         List<Pais> listaPaises = new ArrayList<>();
@@ -94,7 +96,8 @@ public class PaisRestControllerTest {
      */
     @Test
     public void testBuscarPais() throws Exception {
-        Pais pais = new Pais(null, "España");
+        Pais pais = new Pais();
+        pais.setNombre("España");
         paisService.save(pais);
 
         this.mockMvc.perform(get("/pais-service/paises/{id}", pais.getId()))
@@ -110,7 +113,8 @@ public class PaisRestControllerTest {
      */
     @Test
     public void testCrearPais() throws Exception {
-        Pais pais = new Pais(null, "España");
+        Pais pais = new Pais();
+        pais.setNombre("España");
 
         this.mockMvc.perform(post("/pais-service/paises")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -127,7 +131,8 @@ public class PaisRestControllerTest {
      */
     @Test
     public void testActualizarPais() throws Exception {
-        Pais pais = new Pais(null, "España");
+        Pais pais = new Pais();
+        pais.setNombre("España");
         paisService.save(pais);
         pais.setNombre("Portugal");
 
@@ -147,7 +152,8 @@ public class PaisRestControllerTest {
      */
     @Test
     public void testBorrarPais() throws Exception {
-        Pais pais = new Pais(null, "Canada");
+        Pais pais = new Pais();
+        pais.setNombre("Canada");
         paisService.save(pais);
 
         this.mockMvc.perform(delete("/pais-service/paises/{id}", pais.getId()))

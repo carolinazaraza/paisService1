@@ -8,3 +8,6 @@ INSERT INTO pais (nombre) VALUES ('US');
 INSERT INTO pais (nombre) VALUES ('Francia');
 INSERT INTO pais (nombre) VALUES ('Alemania');
 INSERT INTO pais (nombre) VALUES ('Italia');
+INSERT INTO provincia (id_pais, provincia) VALUES (1, 'Valle');
+INSERT INTO provincia (id_pais, provincia) VALUES (1, 'Antioquia');
+INSERT INTO provincia (id_pais, provincia) VALUES (1, 'Cundinamarca');
