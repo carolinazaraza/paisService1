@@ -1,11 +1,13 @@
 package co.edu.uceva.pais_service.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +25,7 @@ public class Pais {
 
     private String nombre;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Provincia> provincias;
+    @JsonProperty("provincias")
+    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
+    private List<Provincia> provincias = new ArrayList<>();
 }

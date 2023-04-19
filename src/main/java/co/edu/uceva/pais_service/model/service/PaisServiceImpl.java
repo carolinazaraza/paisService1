@@ -4,6 +4,7 @@ import co.edu.uceva.pais_service.model.dao.IPaisDao;
 import co.edu.uceva.pais_service.model.entities.Pais;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,12 +34,15 @@ public class PaisServiceImpl implements IPaisService{
     }
 
     /**
-     * Este metodo lista los paises guardados
+     * Este metodo lista los paises guardados y sus provincias
      * @return una lista de paises
      */
     @Override
+    @Transactional(readOnly = true)  //Para ejecutar en modo de solo lectura
     public List<Pais> findAll() {
-        return (List<Pais>) paisDao.findAll();
+        List<Pais> paises = (List<Pais>) paisDao.findAll(); //Traemos la lista de paises
+        paises.forEach(pais -> pais.getProvincias().size()); //Forzamos la carga de las provincias de cada pais con size
+        return paises;
     }
 
     /**
